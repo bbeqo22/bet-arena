@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BET ARENA — Calendario mondiale</title>
+<style>
+:root{--bg:#07100a;--panel:#101c13;--line:#2a4431;--lime:#a3e85a;--txt:#f2f7f1;--muted:#9aab9d;--gold:#f4d16b}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#18361e,#07100a 62%);font-family:Arial,sans-serif;color:var(--txt)}
+header{padding:17px 5%;display:flex;justify-content:space-between;align-items:center;background:#07130cf5;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}.brand{display:flex;align-items:center;gap:12px;font-size:23px;font-weight:900}.logo{background:#214d0b;border-radius:13px;padding:12px;color:#d8ffbd}.brand small{display:block;font-size:10px;letter-spacing:3px;color:#b8cdbb;margin-top:4px}.status{border:1px solid #506a42;border-radius:20px;padding:8px 11px;color:#d4e8cc;font-size:11px}
+main{max-width:1200px;margin:auto;padding:22px 15px 60px}.notice{background:#2a2511;border:1px solid #79682c;color:#f4e7b3;border-radius:12px;padding:13px;line-height:1.5;font-size:12px;margin-bottom:20px}h1{font-size:29px;margin:6px 0}.muted{color:var(--muted);line-height:1.5}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}.metric{background:linear-gradient(140deg,#172a1c,#0c170f);border:1px solid var(--line);border-radius:15px;padding:17px}.metric span{font-size:12px;color:var(--muted);display:block;margin-bottom:9px}.metric strong{font-size:clamp(20px,3vw,29px);color:var(--lime)}.metric small{display:block;color:#839886;font-size:11px;margin-top:8px}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:4px 0 14px}.tab{white-space:nowrap;background:#102017;border:1px solid var(--line);color:#d8e5d9;padding:10px 13px;border-radius:10px;cursor:pointer}.tab.active{background:#356d0e;border-color:var(--lime);color:white}
+.grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(270px,.8fr);gap:16px}.panel{background:#0c170f;border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-bottom:16px}.head{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:15px 17px;background:#13251a;border-bottom:1px solid var(--line)}.head h2{font-size:17px;margin:0}.tag{border:1px solid #456640;color:#d2e8c6;border-radius:20px;padding:5px 8px;font-size:10px;white-space:nowrap}.daytitle{font-size:13px;color:#c5dac8;padding:13px 16px;background:#0e1d12;border-bottom:1px solid #223a28}.match{padding:14px 16px;border-bottom:1px solid #1d3022}.teams{display:flex;justify-content:space-between;gap:12px;align-items:center;font-weight:bold;margin-bottom:8px}.time{color:var(--gold);font-size:12px;white-space:nowrap}.comp{font-size:11px;color:#92a594}.marketrow{display:flex;justify-content:space-between;gap:8px;margin-top:10px;font-size:11px;color:#b7c8b9}.marketrow b{color:#cde8be}.linklist{padding:15px;display:grid;gap:10px}.outlink{display:block;text-decoration:none;color:#e8f3e8;background:#13241a;border:1px solid #2d4a34;border-radius:11px;padding:13px;font-weight:bold}.outlink span{display:block;color:var(--muted);font-size:11px;font-weight:normal;margin-top:5px;line-height:1.4}.activity{padding:15px;font-size:12px;color:#bdcebf;line-height:1.9}.activity b{color:var(--lime)}footer{text-align:center;color:#728776;font-size:11px;padding:20px}
+@media(max-width:760px){header{padding:13px}.brand{font-size:20px}.metrics{grid-template-columns:1fr}.metric{padding:13px}.grid{grid-template-columns:1fr}h1{font-size:24px}}
+
+.login-screen{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;background:radial-gradient(ellipse at top,#18361e,#07100a 70%)}
+.login-card{width:min(420px,100%);background:#0c170f;border:1px solid #2a4431;border-radius:18px;padding:28px;box-shadow:0 20px 70px #0009}
+.login-card h1{margin:0 0 8px;font-size:26px}.login-card p{color:#9aab9d;font-size:13px;line-height:1.5}
+.login-card label{display:block;margin:14px 0 6px;color:#d8e5d9;font-size:12px}
+.login-card input{width:100%;padding:12px;border-radius:9px;border:1px solid #2a4431;background:#07100a;color:#fff;font-size:15px}
+.login-card button{width:100%;margin-top:18px;padding:12px;border:0;border-radius:9px;background:#a3e85a;color:#10200b;font-weight:bold;font-size:15px;cursor:pointer}
+.login-error{color:#ffb4a9!important;min-height:18px}
+</style></head><body>
+
+<div class="login-screen" id="loginScreen">
+  <form class="login-card" id="loginForm">
+    <div class="brand"><div class="logo">♜</div><div>BET ARENA<small>MEMBER ACCESS</small></div></div>
+    <h1>Sign in</h1>
+    <p>Enter your username and password to open the dashboard.</p>
+    <label for="loginUser">Username</label>
+    <input id="loginUser" name="username" autocomplete="username" required>
+    <label for="loginPass">Password</label>
+    <input id="loginPass" name="password" type="password" autocomplete="current-password" required>
+    <button type="submit">Enter BET ARENA</button>
+    <p class="login-error" id="loginError"></p>
+  </form>
+</div>
+
+<header><div class="brand"><div class="logo">♜</div><div>BET ARENA<small>WORLD SPORTS CALENDAR</small></div></div><div class="status">WORLD CALENDAR</div></header>
+<main>
+<h1>Main Dashboard</h1><p class="muted">Football Calendar · October 29 – November 4, 2026</p>
+<div class="metrics">
+<div class="metric"><span>TOTAL REVENUE</span><strong>€ 15.240.850</strong><small>Revenue summary</small></div>
+<div class="metric"><span>BETTING TURNOVER</span><strong>€ 14.985.300</strong><small>Total stakes</small></div>
+<div class="metric"><span>PAYOUTS</span><strong>€ 9.120.650</strong><small>Total payouts</small></div>
+</div>
+<div class="tabs" id="tabs">
+<button class="tab active" data-day="0">Today · Oct 29</button><button class="tab" data-day="1">Tomorrow · Oct 30</button><button class="tab" data-day="2">Sat · Oct 31</button><button class="tab" data-day="3">Sun · Nov 1</button><button class="tab" data-day="4">Mon · Nov 2</button><button class="tab" data-day="5">Tue · Nov 3</button><button class="tab" data-day="6">Wed · Nov 4</button>
+</div>
+<div class="grid"><div>
+<section class="panel"><div class="head"><h2 id="dayHeading">⚽ Today’s Matches</h2><span class="tag">MATCH LIST</span></div><div id="matches"></div></section>
+<section class="panel"><div class="head"><h2>🌍 Worldwide Fixture Calendars</h2><span class="tag">EXTERNAL SOURCES</span></div><div class="linklist">
+<a class="outlink" href="https://www.footballinfo.net/Fixtures?date=2026-10-29" target="_blank" rel="noopener">FootballInfo — October 29<span>International fixtures by date and competition.</span></a>
+<a class="outlink" href="https://www.fixtureshub.com/fixtures?date=2026-10-30" target="_blank" rel="noopener">FixturesHub — October 30<span>Fixtures from many leagues and countries.</span></a>
+<a class="outlink" href="https://www.livescore.mobi/football/2026-10-31/" target="_blank" rel="noopener">LiveScore — October 31<span>Fixtures and results; check kickoff times.</span></a>
+<a class="outlink" href="https://livescoresx.com/fixtures/2026-11-01" target="_blank" rel="noopener">LiveScoresX — November 1<span>Worldwide fixtures by day.</span></a>
+<a class="outlink" href="https://ontourfootball.com/fixtures/2026-11-02" target="_blank" rel="noopener">OnTour Football — November 2<span>Matches from different leagues.</span></a>
+<a class="outlink" href="https://www.livescore.mobi/football/2026-11-03/" target="_blank" rel="noopener">LiveScore — November 3<span>Champions League and domestic leagues.</span></a>
+<a class="outlink" href="https://footynomad.com/list?date=2026-11-04" target="_blank" rel="noopener">FootyNomad — November 4<span>International matches and Asian competitions.</span></a>
+</div></section></div>
+<aside>
+<section class="panel"><div class="head"><h2>🎯 How to Bet</h2><span class="tag">BOOKMAKERS</span></div><div class="activity">1. Scegli il giorno.<br>2. Trova la partita.<br>3. Apri bet365 o SNAI per cercare l'incontro e consultare le quote.</div></section>
+<section class="panel"><div class="head"><h2>🌍 Calendar</h2></div><div class="activity">Usa le schede in alto per passare da un giorno all'altro e consulta i calendari esterni per altri incontri.</div></section>
+</aside></div></main><footer>BET ARENA · WORLD SPORTS CALENDAR</footer>
+<script>
+
+const LOGIN_USERNAME = 'beqo_admin';
+const LOGIN_PASSWORD = 'Arena#2026!';
+document.getElementById('loginForm').addEventListener('submit', function(event){
+  event.preventDefault();
+  const username = document.getElementById('loginUser').value;
+  const password = document.getElementById('loginPass').value;
+  if(username === LOGIN_USERNAME && password === LOGIN_PASSWORD){
+    document.getElementById('loginScreen').style.display = 'none';
+  } else {
+    document.getElementById('loginError').textContent = 'Incorrect username or password. Please try again.';
+  }
+});
+
+const days=[
+{date:'Thursday, October 29, 2026',title:'⚽ Today’s Matches · giovedì 29 ottobre',matches:[
+['18:30','Frosinone','Lecce','Serie A · Italy'],['20:45','Fiorentina','Atalanta','Serie A · Italy'],['20:45','Everton','Newcastle United','League Cup · England'],['17:45','Austria Wien Women','Juventus Women','Women’s Champions League'],['17:45','Paris FC Women','Häcken Women','Women’s Champions League'],['20:00','Manchester City Women','Paris Saint-Germain Women','Women’s Champions League'],['20:00','Køge Women','Barcelona Women','Women’s Champions League'],['07:45','Adelaide United','Home United','AFC Champions League Two'],['12:15','Shanghai Shenhua','Machida Zelvia','AFC Champions League Two'],['19:00','Atlético Baleares','Eldense','Copa del Rey · Spain']
+]},
+{date:'Friday, October 30, 2026',title:'⚽ Tomorrow’s Matches · Friday, October 30',matches:[
+['20:30','Elversberg','Mainz 05','Bundesliga · Germany'],['21:00','Villarreal','Espanyol','La Liga · Spain'],['19:00','Le Havre','Paris Saint-Germain','Ligue 1 · France'],['19:00','Nice','Rennes','Ligue 1 · France'],['21:05','Lille','Lens','Ligue 1 · France'],['21:00','Sheffield United','Wrexham','Championship · England'],['18:00','Konyaspor','Galatasaray','Süper Lig · Türkiye'],['21:15','Casa Pia','Sporting CP','Primeira Liga · Portugal'],['13:30','Abha','Al Ittihad','Saudi Pro League'],['20:45','Zulte Waregem','Club Brugge','Pro League · Belgium'],['10:00','Brisbane Roar','Auckland FC','A-League · Australia'],['20:30','AlbinoLeffe','Pergolettese','Serie C · Italy']
+]},
+{date:'Saturday, October 31, 2026',title:'⚽ Matches · Saturday, October 31',matches:[
+['13:30','Chelsea','Manchester United','Premier League · Inghilterra'],['16:00','Bournemouth','Leeds United','Premier League · Inghilterra'],['16:00','Brentford','Nottingham Forest','Premier League · Inghilterra'],['16:00','Manchester City','Brighton','Premier League · Inghilterra'],['18:30','Tottenham','Crystal Palace','Premier League · Inghilterra'],['21:00','Aston Villa','Fulham','Premier League · Inghilterra'],['14:30','Augsburg','Freiburg','Bundesliga · Germany'],['18:30','Bayern Monaco','Borussia Dortmund','Bundesliga · Germany'],['15:00','Bologna','Monza','Serie A · Italy'],['19:45','Milan','Inter','Serie A · Italy'],['21:00','Barcelona','Alavés','La Liga · Spain']
+]},
+{date:'Sunday, November 1, 2026',title:'⚽ Matches · Sunday, November 1',matches:[
+['16:30','Liverpool','Arsenal','Premier League · Inghilterra'],['13:00','Getafe','Sevilla','La Liga · Spain'],['15:15','Racing Santander','Real Madrid','La Liga · Spain'],['17:30','Elche','Valencia','La Liga · Spain'],['11:30','Como','Venezia','Serie A · Italy'],['14:00','Frosinone','Torino','Serie A · Italy'],['14:00','Lazio','Cagliari','Serie A · Italy'],['17:00','Lecce','Genoa','Serie A · Italy'],['19:45','Juventus','Napoli','Serie A · Italy'],['14:30','Union Berlin','Colonia','Bundesliga · Germany'],['19:45','Marseille','Toulouse','Ligue 1 · France'],['21:30','Vancouver Whitecaps','Seattle Sounders','MLS · USA']
+]},
+{date:'Monday, November 2, 2026',title:'⚽ Matches · Monday, November 2',matches:[
+['20:00','Newcastle United','Everton','Premier League · Inghilterra'],['17:30','Sassuolo','Fiorentina','Serie A · Italy'],['19:45','Atalanta','Parma','Serie A · Italy'],['20:00','Deportivo La Coruña','Osasuna','La Liga · Spain'],['20:15','Benfica','Alverca','Primeira Liga · Portugal'],['17:00','Gençlerbirliği','Alanyaspor','Süper Lig · Türkiye'],['22:00','Platense','Central Córdoba','Liga Profesional · Argentina'],['23:00','RB Bragantino','Santos','Brasileirão · Brazil']
+]},
+{date:'Tuesday, November 3, 2026',title:'⚽ Matches · Tuesday, November 3',matches:[
+['17:45','Galatasaray','VfB Stuttgart','Champions League'],['17:45','Shakhtar Donetsk','Sporting CP','Champions League'],['20:00','Atlético Madrid','Bayern Monaco','Champions League'],['20:00','Barcelona','Aston Villa','Champions League'],['20:00','Feyenoord','Inter','Champions League'],['20:00','Manchester United','Roma','Champions League'],['20:00','Villarreal','Paris Saint-Germain','Champions League'],['08:45','Newcastle Jets','Shanghai Port','AFC Champions League Elite'],['11:00','Jeonbuk','Johor Darul Ta’zim','AFC Champions League Elite'],['19:45','QPR','Burnley','Championship · England']
+]},
+{date:'Wednesday, November 4, 2026',title:'⚽ Matches · Wednesday, November 4',matches:[
+['17:45','AEK Atene','Real Madrid','Champions League'],['17:45','Fenerbahçe','Liverpool','Champions League'],['20:00','Borussia Dortmund','Real Betis','Champions League'],['20:00','Lens','Como','Champions League'],['20:00','RB Leipzig','Manchester City','Champions League'],['20:00','PSV Eindhoven','Club Brugge','Champions League'],['20:00','Slavia Praga','Arsenal','Champions League'],['20:00','Porto','Napoli','Champions League'],['00:30','Internacional','Coritiba','Brasileirão · Brazil'],['22:30','Flamengo','Grêmio','Brasileirão · Brazil'],['10:00','Pohang Steelers','Gamba Osaka','AFC Champions League Elite'],['07:45','Melbourne Victory','Persib Bandung','AFC Champions League Two']
+]}
+];
+function render(i){const d=days[i];document.getElementById('dayHeading').textContent=d.title;const box=document.getElementById('matches');box.innerHTML='<div class="daytitle">'+d.date+'</div>';d.matches.forEach(m=>{const el=document.createElement('div');el.className='match';el.innerHTML='<div class="teams"><span>'+m[1]+' <span style="color:#8fa091;font-weight:normal">vs</span> '+m[2]+'</span><span class="time">'+m[0]+'</span></div><div class="comp">'+m[3]+'</div><div class="marketrow"><span>Gioca su:</span><span><a href="https://www.bet365.it/" target="_blank" rel="noopener" style="color:#cde8be;font-weight:bold;margin-right:12px">bet365</a><a href="https://www.snai.it/" target="_blank" rel="noopener" style="color:#cde8be;font-weight:bold">SNAI</a></span></div>';box.appendChild(el)});}
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));t.classList.add('active');render(Number(t.dataset.day))}));render(0);
+</script></body></html>
